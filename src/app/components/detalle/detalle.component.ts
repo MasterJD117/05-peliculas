@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Cast, PeliculaDetalle } from 'src/app/interfaces/interfaces';
+import { MoviesService } from 'src/app/services/movies.service';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detalle',
@@ -9,11 +12,70 @@ export class DetalleComponent implements OnInit {
 
   @Input() id: any;
 
-  constructor() { }
+  pelicula: PeliculaDetalle = {
+    adult: false,
+    backdrop_path: '',
+    belongs_to_collection: null,
+    budget: 0,
+    genres: [],
+    homepage: '',
+    id: 0,
+    imdb_id: '',
+    original_language: '',
+    original_title: '',
+    overview: '',
+    popularity: 0,
+    poster_path: '',
+    production_companies: [],
+    production_countries: [],
+    release_date: '',
+    revenue: 0,
+    runtime: 0,
+    spoken_languages: [],
+    status: '',
+    tagline: '',
+    title: '',
+    video: false,
+    vote_average: 0,
+    vote_count: 0
+  };
+
+  actores: Cast[] = [];
+
+  oculto = 150;
+
+  slideOptActores = {
+    slidesPerView: 3.3,
+    freeMode: true,
+    spaceBetween: -5
+  }
+
+  constructor( private moviesService: MoviesService, 
+               private modalCtrl: ModalController) { }
 
   ngOnInit() {
-    console.log('ID', this.id);
+    // console.log('ID', this.id);
+
+    this.moviesService.getPeliculaDetalle( this.id )
+      .subscribe( resp => {
+        console.log(resp);
+        this.pelicula = resp;
+      });
+
+    this.moviesService.getActores( this.id )
+      .subscribe( resp => {
+        console.log(resp);
+        this.actores = resp.cast;
+      });
     
+  }
+
+  regresar(){
+    this.modalCtrl.dismiss();
+  }
+
+  favorito(){
+
   }
 
 }
