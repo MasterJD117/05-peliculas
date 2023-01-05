@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
 import { Pelicula } from '../interfaces/interfaces';
+import { ModalController } from '@ionic/angular';
+import { DetalleComponent } from '../components/detalle/detalle.component';
 
 @Component({
   selector: 'app-tab2',
@@ -14,7 +16,8 @@ export class Tab2Page {
   spinner: boolean = false;
   ideas: string[] = ['Spiderman', 'Avatar', 'El señor de los anillos', 'Megan', 'Black adam'];
 
-  constructor( private moviesService: MoviesService ) {}
+  constructor( private moviesService: MoviesService,
+               private modalCtrl: ModalController ) {}
 
   buscar(event: any){
     const valor: string = event.detail.value;
@@ -38,6 +41,18 @@ export class Tab2Page {
 
   onClick( idea: string){
     this.textoBuscar = idea;
+  }
+
+
+  async verDetalle(idPelicula: any){
+    const modal = await this.modalCtrl.create({
+      component: DetalleComponent,
+      componentProps: {
+        id: idPelicula
+      }
+    });
+
+    modal.present();
   }
 
 }

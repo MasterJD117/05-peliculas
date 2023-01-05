@@ -6,6 +6,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { SlideshowPosterComponent } from './slideshow-poster/slideshow-poster.component';
 import { SlideshowParesComponent } from './slideshow-pares/slideshow-pares.component';
 import { DetalleComponent } from './detalle/detalle.component';
+import { SlidershowPosterV2Component } from './slidershow-poster-v2/slidershow-poster-v2.component';
 
 
 
@@ -14,6 +15,7 @@ import { DetalleComponent } from './detalle/detalle.component';
     SlideshowBackdropComponent,
     SlideshowPosterComponent,
     SlideshowParesComponent,
+    SlidershowPosterV2Component,
     DetalleComponent
   ],
   imports: [
@@ -25,6 +27,7 @@ import { DetalleComponent } from './detalle/detalle.component';
     SlideshowBackdropComponent,
     SlideshowPosterComponent,
     SlideshowParesComponent,
+    SlidershowPosterV2Component,
     DetalleComponent
 
   ]

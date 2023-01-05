@@ -1,6 +1,7 @@
 {
     "recommendations": [
       "ionic.ionic",
-      "johnpapa.angular2"
+      "johnpapa.angular2",
+      "angular.ng-template"
     ]
 }
